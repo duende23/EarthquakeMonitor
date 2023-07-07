@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EarthquakeMainFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvEarthquake"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/earthquake_list_item"
+        tools:itemCount="30"
+        />
+
+
+    <TextView
+        android:id="@+id/tvEarthEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:textSize="24sp"
+        android:textColor="@color/black"
+        android:text="@string/tv_earthquakes_empty"
+        android:gravity="center"
+        />
+
+</FrameLayout>
