@@ -2,6 +2,7 @@ package com.villadevs.earthquakemonitor.network
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import com.villadevs.earthquakemonitor.model.EarthquakeJsonResponses
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
@@ -20,7 +21,7 @@ private val retrofit = Retrofit.Builder()
 interface EarthquakeApiService {
     @GET("all_hour.geojson")
     //suspend fun getPhotos(): List<MarsPhoto>
-    suspend fun getLastHourEarthquakes(): String
+    suspend fun getLastHourEarthquakes(): EarthquakeJsonResponses
 }
 
 object EarthquakeApi {

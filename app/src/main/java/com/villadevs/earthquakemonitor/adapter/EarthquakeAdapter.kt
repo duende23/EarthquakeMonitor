@@ -1,5 +1,6 @@
 package com.villadevs.earthquakemonitor.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -8,9 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.villadevs.earthquakemonitor.R
 import com.villadevs.earthquakemonitor.databinding.EarthquakeListItemBinding
 import com.villadevs.earthquakemonitor.model.Earthquake
+import kotlinx.coroutines.withContext
 
 
-class EarthquakeAdapter(private val onItemClicked: (Earthquake) -> Unit) :
+class EarthquakeAdapter(private val context: Context, private val onItemClicked: (Earthquake) -> Unit) :
     ListAdapter<Earthquake, EarthquakeAdapter.EarthquakeViewHolder>(DiffCallback) {
 
 
@@ -38,14 +40,14 @@ class EarthquakeAdapter(private val onItemClicked: (Earthquake) -> Unit) :
     }
 
 
-    class EarthquakeViewHolder(private var binding: EarthquakeListItemBinding) :
+    inner class EarthquakeViewHolder(private var binding: EarthquakeListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(earthquake: Earthquake) {
             /* binding.ivAmphibian.load(amphibian.imageResourceId.toUri().buildUpon().scheme("https").build()){
                  placeholder(R.drawable.loading_animation)
                  error(R.drawable.ic_broken_image)
              }*/
-            binding.tvEarthQMagnitude.text = earthquake.magnitude.toString()
+            binding.tvEarthQMagnitude.text = context.getString(R.string.magnitude_format, earthquake.magnitude)
             binding.tvEarthQPlace.text = earthquake.place
             // Load the images into the ImageView using the Coil library.
             //binding.ivAmphibian.setImageResource(R.drawable.ic_broken_image)

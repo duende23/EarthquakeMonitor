@@ -15,11 +15,9 @@
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="@tools:sample/us_zipcodes" />
-
 
     <TextView
         android:id="@+id/tvEarthQPlace"
@@ -28,19 +26,19 @@
         android:layout_marginHorizontal="16dp"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@id/tvEarthQMagnitude"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="@tools:sample/cities" />
+        app:layout_constraintStart_toEndOf="@id/tvEarthQMagnitude"
+        app:layout_constraintEnd_toStartOf="@id/ivLabel"
+        tools:text="@tools:sample/cities"
+        />
 
     <ImageView
         android:id="@+id/ivLabel"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:src="@drawable/baseline_chevron_right_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
