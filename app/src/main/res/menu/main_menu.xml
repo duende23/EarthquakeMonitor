@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/itSortMagnitude"
+        android:icon="@drawable/baseline_warning_24"
+        android:title="Sort by magnitude"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/itSortTime"
+        android:icon="@drawable/ic_history_24"
+        android:title="Sort by time"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/itUpdateData"
+        android:icon="@drawable/baseline_system_update_alt_24"
+        android:title="Update data"
+        app:showAsAction="ifRoom" />
+
+
+</menu>

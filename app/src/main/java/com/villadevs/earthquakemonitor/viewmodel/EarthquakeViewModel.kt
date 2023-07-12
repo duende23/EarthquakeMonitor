@@ -4,30 +4,54 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.villadevs.earthquakemonitor.database.EarthquakeDao
 import com.villadevs.earthquakemonitor.model.Earthquake
-import com.villadevs.earthquakemonitor.model.EarthquakeJsonResponses
-import com.villadevs.earthquakemonitor.network.EarthquakeApi
-import com.villadevs.earthquakemonitor.network.EarthquakeApiService
+import com.villadevs.earthquakemonitor.network.ApiResponseStatus
 import com.villadevs.earthquakemonitor.repository.MainRepository
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import java.net.UnknownHostException
 
-class EarthquakeViewModel : ViewModel() {
+class EarthquakeViewModel(private val earthquakeDao: EarthquakeDao, private val sortType: Boolean) : ViewModel() {
+
+    //val earthquakes: LiveData<List<Earthquake>> = earthquakeDao.getEarthquakes().asLiveData()
 
     private val _earthqueakes = MutableLiveData<List<Earthquake>>()
     val earthqueakes: LiveData<List<Earthquake>>
         get() = _earthqueakes
 
-    private val repository = MainRepository()
+    private val _status = MutableLiveData<ApiResponseStatus>()
+    val status: LiveData<ApiResponseStatus>
+        get() = _status
+
+
+
+    private val repository = MainRepository(earthquakeDao)
 
     init {
         //getEarthquakes()
+        //Para que por defecto los ordene por tiempo
+        reloadEarthquake(sortType)
+    }
+
+    fun reloadEarthquake(sortType: Boolean) {
+        try {
+            _status.value = ApiResponseStatus.LOADING
+            viewModelScope.launch {
+                _earthqueakes.value = repository.getEarthquakes(sortType)
+                _status.value = ApiResponseStatus.DONE
+            }
+        } catch (e: UnknownHostException) {
+            _status.value = ApiResponseStatus.NOT_INTERNET_CONNECTION
+        }
+    }
+
+    fun reloadEarthquakeFromDB(sortByMagnitude: Boolean) {
         viewModelScope.launch {
-            _earthqueakes.value = repository.getEarthquakes()
+            _earthqueakes.value = repository.getEarthquakesFromDB(sortByMagnitude)
         }
 
     }
+
 
     /*private fun getEarthquakes() {
         val eartquakeList = mutableListOf<Earthquake>()

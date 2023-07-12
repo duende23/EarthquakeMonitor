@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'androidx.navigation.safeargs.kotlin'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -91,4 +92,7 @@ dependencies {
     implementation("androidx.room:room-ktx:2.5.2")
     // optional - Test helpers
     testImplementation("androidx.room:room-testing:2.5.2")
+
+    //DataStore
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
 }

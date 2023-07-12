@@ -18,5 +18,9 @@
         android:id="@+id/earthquakeDetailsFragment"
         android:name="com.villadevs.earthquakemonitor.EarthquakeDetailsFragment"
         android:label="fragment_earthquake_details"
-        tools:layout="@layout/fragment_earthquake_details" />
+        tools:layout="@layout/fragment_earthquake_details" >
+        <argument
+            android:name="earthquakeObject"
+            app:argType="com.villadevs.earthquakemonitor.model.Earthquake" />
+    </fragment>
 </navigation>
